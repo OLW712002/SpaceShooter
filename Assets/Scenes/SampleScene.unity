@@ -456,6 +456,10 @@ MonoBehaviour:
   moveSpeed: 2
   maxSpeed: 20
   speedIncreaseRate: 5
+  paddingLeft: 0.5
+  paddingRight: 0.5
+  paddingTop: 0.5
+  paddingBottom: 0.5
 --- !u!114 &1373044710
 MonoBehaviour:
   m_ObjectHideFlags: 0
