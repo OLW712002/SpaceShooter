@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Wave Config", fileName = "New wave config")]
 public class WaveConfigSO : ScriptableObject
 {
+    [SerializeField] List<GameObject> enemyPrefabs;
     [SerializeField] Transform pathPrefab;
     [SerializeField] float moveSpeed = 5.0f;
 
@@ -26,5 +27,15 @@ public class WaveConfigSO : ScriptableObject
     public float GetMoveSpeed()
     {
         return moveSpeed;
+    }
+
+    public int GetEnemiesCount()
+    {
+        return enemyPrefabs.Count;
+    }
+
+    public GameObject GetEnemyPrefabs(int index)
+    {
+        return enemyPrefabs[index];
     }
 }
