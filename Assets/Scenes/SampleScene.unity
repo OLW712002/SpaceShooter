@@ -352,8 +352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0f6eb216fc32a4e9da2982097583f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWave: {fileID: 11400000, guid: a706ff9e4e7ad4b4296fea7a99a117f8, type: 2}
-  delayForNextEnemy: 0.75
+  waveConfigs:
+  - {fileID: 11400000, guid: a706ff9e4e7ad4b4296fea7a99a117f8, type: 2}
+  - {fileID: 11400000, guid: cb3b5921dbf74d8459792552e55f2a9e, type: 2}
+  timeBetweenWaves: 5
 --- !u!4 &2134289660
 Transform:
   m_ObjectHideFlags: 0

@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] WaveConfigSO currentWave;
-    [SerializeField] float delayForNextEnemy = 1.0f;
+    [SerializeField] List<WaveConfigSO> waveConfigs;
+    [SerializeField] float timeBetweenWaves = 10f;
+
+    WaveConfigSO currentWave;
 
     void Start()
     {
-        //SpawnEnemies();
-        StartCoroutine(SpawnEnemiesWithDelay());
+        StartCoroutine(ReleaseWave());
     }
 
     public WaveConfigSO GetCurrentWave()
@@ -19,13 +20,14 @@ public class EnemySpawner : MonoBehaviour
         return currentWave;
     }
 
-    private void SpawnEnemies()
+    IEnumerator ReleaseWave()
     {
-        for (int i = 0; i < currentWave.GetEnemiesCount(); i++)
+        foreach(WaveConfigSO wave in waveConfigs)
         {
-            Instantiate(currentWave.GetEnemyPrefabs(i), currentWave.GetStartingWaypoint().position, Quaternion.identity, transform);
+            currentWave = wave;
+            StartCoroutine(SpawnEnemiesWithDelay());
+            yield return new WaitForSecondsRealtime(timeBetweenWaves);
         }
-        
     }
 
     IEnumerator SpawnEnemiesWithDelay()
@@ -33,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < currentWave.GetEnemiesCount(); i++)
         {
             Instantiate(currentWave.GetEnemyPrefabs(i), currentWave.GetStartingWaypoint().position, Quaternion.identity, transform);
-            yield return new WaitForSecondsRealtime(delayForNextEnemy);
+            yield return new WaitForSecondsRealtime(currentWave.GetRandomSpawnTime());
         }
     }
 }
