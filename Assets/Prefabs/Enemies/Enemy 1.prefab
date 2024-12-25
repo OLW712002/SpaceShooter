@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2019885772890686292}
   - component: {fileID: 2966736324043743261}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: enemyRed4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -7593476494680888607}
   - component: {fileID: -7630394525089552814}
   - component: {fileID: 8465475838362811351}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
