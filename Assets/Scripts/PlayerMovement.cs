@@ -21,6 +21,12 @@ public class PlayerMovement : MonoBehaviour
     Vector2 maxBounds;
     float moveSpeedAtStart = 0f;
 
+    Shooter shooter;
+
+    private void Awake()
+    {
+        shooter = GetComponent<Shooter>();
+    }
 
     void Start()
     {
@@ -58,5 +64,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rawInput = value.Get<Vector2>();
         Debug.Log(rawInput);
+    }
+
+    void OnFire(InputValue value)
+    {
+        if (shooter != null) shooter.isFiring = value.isPressed;
     }
 }
