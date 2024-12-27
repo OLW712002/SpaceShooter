@@ -25,20 +25,27 @@ public class Shooter : MonoBehaviour
 
     private void Fire()
     {
-        if (isFiring && firingCoroutine == null)
+        if (isFiring)
         {
-            firingCoroutine = StartCoroutine(FireContinuously());
+            if (firingCoroutine == null) firingCoroutine = StartCoroutine(FireContinuously());
         }
-        else if (!isFiring && firingCoroutine != null)
+        else
         {
-            StopCoroutine(firingCoroutine);
-            firingCoroutine = null;
+            if (firingCoroutine != null)
+            {
+                StopCoroutine(firingCoroutine);
+                firingCoroutine = null;
+            }
+            
         }
     }
 
     IEnumerator FireContinuously()
     {
-        Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity, transform);
-        yield return new WaitForSecondsRealtime(timeBetweenProjectile);
+        while (isFiring)
+        {
+            yield return new WaitForSecondsRealtime(timeBetweenProjectile);
+            Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity, transform);
+        }
     }
 }
