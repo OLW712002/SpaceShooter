@@ -45,7 +45,9 @@ public class Shooter : MonoBehaviour
         while (isFiring)
         {
             yield return new WaitForSecondsRealtime(timeBetweenProjectile);
-            Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity, transform);
+            GameObject projectile = Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity, transform);
+            projectile.GetComponent<Rigidbody2D>().transform.position += Vector3.up * projectileSpeed * Time.deltaTime;
+            Destroy(projectile, projectileLifeTime);
         }
     }
 }
