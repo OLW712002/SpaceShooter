@@ -12,10 +12,11 @@ public class Shooter : MonoBehaviour
 
     public bool isFiring = false;
     Coroutine firingCoroutine;
+    GameObject projectileContainer;
 
     void Start()
     {
-        
+        if (projectileContainer == null) projectileContainer = new GameObject("ProjectileContainer");
     }
 
     void Update()
@@ -44,10 +45,25 @@ public class Shooter : MonoBehaviour
     {
         while (isFiring)
         {
+            GameObject projectile = Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity, projectileContainer.transform);
+            StartCoroutine(projectileMove(projectile));
             yield return new WaitForSecondsRealtime(timeBetweenProjectile);
-            GameObject projectile = Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity, transform);
-            projectile.GetComponent<Rigidbody2D>().transform.position += Vector3.up * projectileSpeed * Time.deltaTime;
-            Destroy(projectile, projectileLifeTime);
         }
+    }
+
+    IEnumerator projectileMove(GameObject projectile)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < projectileLifeTime)
+        {
+            if (projectile != null)
+            {
+                projectile.transform.position += Vector3.up * projectileSpeed * Time.deltaTime;
+                elapsedTime += Time.deltaTime;
+            }
+            yield return null;
+
+        }
+        Destroy(projectile);
     }
 }
