@@ -343,7 +343,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: e5c9b2eb84e883d479332f14e3bbb119, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5816e49aa553fd94296a485ce939afba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -460,11 +460,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6752579087886662020, guid: ca9a5956fd477344589b13835ce5d15f, type: 3}
       propertyPath: minimumFiringTime
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6752579087886662020, guid: ca9a5956fd477344589b13835ce5d15f, type: 3}
       propertyPath: timeBetweenProjectile
-      value: 0.25
+      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca9a5956fd477344589b13835ce5d15f, type: 3}

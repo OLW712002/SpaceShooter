@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] int health = 50;
+    [SerializeField] ParticleSystem hitEffect;
 
     public int GetHealth()
     {
@@ -17,6 +18,7 @@ public class Health : MonoBehaviour
         if (dmgDealer != null)
         {
             TakeDmg(dmgDealer);
+            PlayHitEffect();
             dmgDealer.Hit();
         }
     }
@@ -25,5 +27,15 @@ public class Health : MonoBehaviour
     {
         health -= damageDealer.GetDmgAmount();
         if (health <= 0) Destroy(gameObject);
+    }
+
+    void PlayHitEffect()
+    {
+        if (hitEffect != null)
+        {
+            ParticleSystem instance = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            Destroy(instance.gameObject, instance.main.duration + instance.main.startLifetime.constantMax);
+            Debug.Log(instance.main.duration);
+        }
     }
 }
