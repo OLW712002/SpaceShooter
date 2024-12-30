@@ -459,6 +459,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6752579087886662020, guid: ca9a5956fd477344589b13835ce5d15f, type: 3}
+      propertyPath: minimumFiringTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752579087886662020, guid: ca9a5956fd477344589b13835ce5d15f, type: 3}
       propertyPath: timeBetweenProjectile
       value: 0.25
       objectReference: {fileID: 0}

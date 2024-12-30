@@ -9,14 +9,30 @@ public class Shooter : MonoBehaviour
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileLifeTime = 5f;
     [SerializeField] float timeBetweenProjectile = 1f;
+    [SerializeField] float firingTimeVariance = 0f;
+    [SerializeField] float minimumFiringTime = 0.5f;
+    [SerializeField] bool isAI;
 
     public bool isFiring = false;
     Coroutine firingCoroutine;
     GameObject projectileContainer;
 
+    private void Awake()
+    {
+        projectileContainer = GameObject.Find("ProjectileContainer");
+        if (projectileContainer == null) projectileContainer = new GameObject("ProjectileContainer");
+    }
+
     void Start()
     {
-        if (projectileContainer == null) projectileContainer = new GameObject("ProjectileContainer");
+        if (isAI)
+        {
+            isFiring = true;
+        }
+        else
+        {
+
+        }
     }
 
     void Update()
@@ -46,12 +62,16 @@ public class Shooter : MonoBehaviour
         while (isFiring)
         {
             GameObject projectile = Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity, projectileContainer.transform);
-            StartCoroutine(projectileMove(projectile));
-            yield return new WaitForSecondsRealtime(timeBetweenProjectile);
+            Destroy(projectile, projectileLifeTime);
+            StartCoroutine(ProjectileMove(projectile));
+            yield return new WaitForSecondsRealtime(
+                Mathf.Clamp(UnityEngine.Random.Range(timeBetweenProjectile - firingTimeVariance, timeBetweenProjectile + firingTimeVariance),
+                minimumFiringTime, float.MaxValue)
+                );
         }
     }
 
-    IEnumerator projectileMove(GameObject projectile)
+    IEnumerator ProjectileMove(GameObject projectile)
     {
         float elapsedTime = 0f;
         while (elapsedTime < projectileLifeTime)
@@ -62,8 +82,6 @@ public class Shooter : MonoBehaviour
                 elapsedTime += Time.deltaTime;
             }
             yield return null;
-
         }
-        Destroy(projectile);
     }
 }
