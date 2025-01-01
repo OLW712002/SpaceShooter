@@ -62,26 +62,13 @@ public class Shooter : MonoBehaviour
         while (isFiring)
         {
             GameObject projectile = Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity, projectileContainer.transform);
+            projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, projectileSpeed);
+            Debug.Log(projectile.GetComponent<Rigidbody2D>().velocity);
             Destroy(projectile, projectileLifeTime);
-            StartCoroutine(ProjectileMove(projectile));
             yield return new WaitForSecondsRealtime(
                 Mathf.Clamp(UnityEngine.Random.Range(timeBetweenProjectile - firingTimeVariance, timeBetweenProjectile + firingTimeVariance),
                 minimumFiringTime, float.MaxValue)
                 );
-        }
-    }
-
-    IEnumerator ProjectileMove(GameObject projectile)
-    {
-        float elapsedTime = 0f;
-        while (elapsedTime < projectileLifeTime)
-        {
-            if (projectile != null)
-            {
-                projectile.transform.position += Vector3.up * projectileSpeed * Time.deltaTime;
-                elapsedTime += Time.deltaTime;
-            }
-            yield return null;
         }
     }
 }
