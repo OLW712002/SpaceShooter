@@ -15,6 +15,7 @@ public class Health : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DamageDealer dmgDealer = collision.GetComponent<DamageDealer>();
+        if (collision.tag == "Enemy") FindObjectOfType<CameraShake>().Play();
         if (dmgDealer != null)
         {
             TakeDmg(dmgDealer);
@@ -35,7 +36,6 @@ public class Health : MonoBehaviour
         {
             ParticleSystem instance = Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(instance.gameObject, instance.main.duration + instance.main.startLifetime.constantMax);
-            Debug.Log(instance.main.duration);
         }
     }
 }
