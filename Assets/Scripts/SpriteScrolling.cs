@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpriteScrolling : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 1f;
+    [SerializeField] Vector2 moveSpeed;
 
     Vector2 offset;
     Material material;
@@ -12,7 +12,7 @@ public class SpriteScrolling : MonoBehaviour
     private void Awake()
     {
         material = GetComponent<SpriteRenderer>().material;
-        offset = Vector2.up * moveSpeed * Time.deltaTime;
+        offset = moveSpeed * Time.deltaTime;
     }
 
     void Update()
