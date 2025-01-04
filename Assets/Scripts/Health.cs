@@ -9,9 +9,11 @@ public class Health : MonoBehaviour
     [SerializeField] bool applyScreenShake = false;
 
     CameraShake cameraShake;
+    AudioPlayer audioPlayer;
 
     private void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         cameraShake = Camera.main.GetComponent<CameraShake>();
     }
 
@@ -28,6 +30,7 @@ public class Health : MonoBehaviour
             TakeDmg(dmgDealer);
             PlayHitEffect();
             PlayScreenShake();
+            audioPlayer.PlayHittingClip();
             dmgDealer.Hit();
         }
     }

@@ -16,9 +16,11 @@ public class Shooter : MonoBehaviour
     public bool isFiring = false;
     Coroutine firingCoroutine;
     GameObject projectileContainer;
+    AudioPlayer audioPlayer;
 
     private void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         projectileContainer = GameObject.Find("ProjectileContainer");
         if (projectileContainer == null) projectileContainer = new GameObject("ProjectileContainer");
     }
@@ -65,6 +67,7 @@ public class Shooter : MonoBehaviour
             projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, projectileSpeed);
             Debug.Log(projectile.GetComponent<Rigidbody2D>().velocity);
             Destroy(projectile, projectileLifeTime);
+            audioPlayer.PlayShootingClip();
             yield return new WaitForSecondsRealtime(
                 Mathf.Clamp(UnityEngine.Random.Range(timeBetweenProjectile - firingTimeVariance, timeBetweenProjectile + firingTimeVariance),
                 minimumFiringTime, float.MaxValue)
