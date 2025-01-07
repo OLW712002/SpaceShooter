@@ -7,14 +7,20 @@ public class Health : MonoBehaviour
     [SerializeField] int health = 50;
     [SerializeField] ParticleSystem hitEffect;
     [SerializeField] bool applyScreenShake = false;
+    [SerializeField] bool isPlayer;
+
+    [Header("EnemySetting")]
+    [SerializeField] int score = 100;
 
     CameraShake cameraShake;
     AudioPlayer audioPlayer;
+    ScoreKeeper scoreKeeper;
 
     private void Awake()
     {
         audioPlayer = FindObjectOfType<AudioPlayer>();
         cameraShake = Camera.main.GetComponent<CameraShake>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
     public int GetHealth()
@@ -38,7 +44,11 @@ public class Health : MonoBehaviour
     void TakeDmg(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDmgAmount();
-        if (health <= 0) Destroy(gameObject);
+        if (health <= 0)
+        {
+            if (!isPlayer) scoreKeeper.AddScore(score);
+            Destroy(gameObject);
+        }
     }
 
     void PlayHitEffect()

@@ -199,6 +199,8 @@ MonoBehaviour:
   health: 50
   hitEffect: {fileID: 369152727576276874, guid: 36995eecccd57b846b06c83875c37220, type: 3}
   applyScreenShake: 0
+  isPlayer: 0
+  score: 100
 --- !u!114 &1511083235090486231
 MonoBehaviour:
   m_ObjectHideFlags: 0

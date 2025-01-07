@@ -13,7 +13,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] float minimumFiringTime = 0.5f;
     [SerializeField] bool isAI;
 
-    public bool isFiring = false;
+    [HideInInspector] public bool isFiring = false;
     Coroutine firingCoroutine;
     GameObject projectileContainer;
     AudioPlayer audioPlayer;
@@ -65,7 +65,6 @@ public class Shooter : MonoBehaviour
         {
             GameObject projectile = Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity, projectileContainer.transform);
             projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, projectileSpeed);
-            Debug.Log(projectile.GetComponent<Rigidbody2D>().velocity);
             Destroy(projectile, projectileLifeTime);
             audioPlayer.PlayShootingClip();
             yield return new WaitForSecondsRealtime(
