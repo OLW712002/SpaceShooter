@@ -5,17 +5,19 @@ using UnityEngine;
 public class ScoreKeeper : MonoBehaviour
 {
     int score;
+    bool maxScore = false;
 
-    public int GetScore()
+    public long GetScore()
     {
-        return score;
+        Mathf.Clamp(score, 0, 99999999);
+        if (maxScore) return 9999999999;
+        return (long)score*100;
     }
 
     public void AddScore(int value)
     {
-        score += value;
-        Mathf.Clamp(score, 0, int.MaxValue);
-        Debug.Log(score);
+        score += value/100;
+        if (score > 99999999) maxScore = true;
     }
 
     public void ResetScore()

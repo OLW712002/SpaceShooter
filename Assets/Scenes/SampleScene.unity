@@ -741,6 +741,7 @@ GameObject:
   - component: {fileID: 548765585}
   - component: {fileID: 548765584}
   - component: {fileID: 548765583}
+  - component: {fileID: 548765587}
   m_Layer: 5
   m_Name: UICanvas
   m_TagString: Untagged
@@ -830,6 +831,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &548765587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548765582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b05f63cec6355d4994e101a20cc543d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1457461592}
+  healthSlider: {fileID: 340420271}
+  smoothSpeed: 5
+  scoreText: {fileID: 1187577400}
 --- !u!1 &795102227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1187,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333436125}
   m_CullTransparentMesh: 1
+--- !u!1 &1457461592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5674419468260221117, guid: ca9a5956fd477344589b13835ce5d15f, type: 3}
+  m_PrefabInstance: {fileID: 5674419469630365534}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1469378919
 GameObject:
   m_ObjectHideFlags: 0
