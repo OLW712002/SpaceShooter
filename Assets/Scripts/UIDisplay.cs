@@ -6,27 +6,25 @@ using TMPro;
 
 public class UIDisplay : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    [Header("Health")]
+    [SerializeField] Health playerHealth;
     [SerializeField] Slider healthSlider;
-    [SerializeField] float smoothSpeed = 5f;
+
+    [Header("Score")]
     [SerializeField] TextMeshProUGUI scoreText;
 
-    Health playerHealth;
-    int healthAtStart;
-
     ScoreKeeper scoreKeeper;
+    float smoothSpeed = 5f;
 
     private void Start()
     {
-        playerHealth = player.GetComponent<Health>();
-        healthAtStart = playerHealth.GetHealth();
+        healthSlider.maxValue = playerHealth.GetHealth();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
     private void Update()
     {
-        float percentHealth = (float)playerHealth.GetHealth() / (float)healthAtStart;
-        healthSlider.value = Mathf.Lerp(healthSlider.value, percentHealth, Time.deltaTime * smoothSpeed);
+        healthSlider.value = Mathf.Lerp(healthSlider.value, playerHealth.GetHealth(), Time.deltaTime * smoothSpeed);
         scoreText.text = scoreKeeper.GetScore().ToString("D10");
     }
 }
