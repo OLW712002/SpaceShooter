@@ -15,11 +15,13 @@ public class Health : MonoBehaviour
     CameraShake cameraShake;
     AudioPlayer audioPlayer;
     ScoreKeeper scoreKeeper;
+    LevelManager levelManager;
 
     private void Awake()
     {
-        audioPlayer = FindObjectOfType<AudioPlayer>();
         cameraShake = Camera.main.GetComponent<CameraShake>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+        levelManager = FindObjectOfType<LevelManager>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
@@ -44,11 +46,20 @@ public class Health : MonoBehaviour
     void TakeDmg(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDmgAmount();
-        if (health <= 0)
+        if (health <= 0) Die();
+    }
+
+    void Die()
+    {
+        if (!isPlayer)
         {
-            if (!isPlayer) scoreKeeper.AddScore(score);
-            Destroy(gameObject);
+            scoreKeeper.AddScore(score);
         }
+        else
+        {
+            levelManager.LoadResult();
+        }
+        Destroy(gameObject);
     }
 
     void PlayHitEffect()
