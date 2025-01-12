@@ -286,6 +286,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6051983727301791082, guid: 8368731bf3074e24f84019abad0c5386, type: 3}
+      propertyPath: moveSpeed.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051983727301791082, guid: 8368731bf3074e24f84019abad0c5386, type: 3}
+      propertyPath: moveSpeed.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051983728144536224, guid: 8368731bf3074e24f84019abad0c5386, type: 3}
+      propertyPath: moveSpeed.x
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051983728144536224, guid: 8368731bf3074e24f84019abad0c5386, type: 3}
+      propertyPath: moveSpeed.y
+      value: 0.025
+      objectReference: {fileID: 0}
     - target: {fileID: 6051983728965941811, guid: 8368731bf3074e24f84019abad0c5386, type: 3}
       propertyPath: m_Name
       value: Background
