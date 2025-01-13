@@ -6,6 +6,21 @@ public class ScoreKeeper : MonoBehaviour
 {
     int score;
     bool maxScore = false;
+    static ScoreKeeper instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     public long GetScore()
     {
